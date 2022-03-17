@@ -1,7 +1,7 @@
 # Simulated data set
-    The data and information in this directory is from the 14th QTL-MAS [AAA](https://jay.up.poznan.pl/qtlmas2010/)
+    The data and information in this directory is from the 14th QTL-MAS [AAA](https://jay.up.poznan.pl/qtlmas2010/)?
     It represents simulated geneomic mouse data for public use and which has been edited and
-    formatted for bayesR3 usage:
+    formatted for bayesR3 usage: [Google](https://www.google.com) 
 
 
 ## Pedigree [49.9 KB] (pedigree.txt)
