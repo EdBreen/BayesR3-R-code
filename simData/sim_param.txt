@@ -1,0 +1,44 @@
+//--------- INPUT FILE information
+-genf   /home/ec2-user/simData/simSplit simGen.txt.gz  //Name of genotype file (can be a '.gz' file)
+-parts 1
+-phef  /home/ec2-user/simData/simPhen.txt //Name of phenotypefile (can be a '.gz' file)
+-ped   /home/ec2-user/simData/pedigree.txt NA //Optional name of pedigree file if available (can be a '.gz' file)
+-grm    NA  //Optional GRM relationship matrix alternative to pedigree
+-fixf   NA  //Optional name for a fixedeffects design file (can be a '.gz' file)
+-ref    /home/ec2-user/simData/simRefSet.txt  //Optional file name giving a set of reference IDs (can be a '.gz' file
+-valid   NA // Optional validation file
+-classf  NA //Optional file name containing a classification for each SNP, to run a BayesRC analysis
+-sc   1 //Scale and centre genotypes
+-tc   1   //Column number(s) of the phenotype(s) to analyse
+-wtc  NA //Weight columns in phenotype file to use
+-h  0.5 //Trait heritability(s)
+-maf 0.01 //Minimum allele frequency
+ 
+//-------------- OUTPUT FILE information
+-path  /home/ec2-user/simData/keep  //Path directory to store output files. Will be created if needed
+-pre   simData  //Output file prefix
+-d  1   //Output detail; 1 = means only, 2 = full output
+-fext csv //Output file extension type, one of {csv, txt, tab}
+-chains 1 //A chain represents a computer thread, minimum value = 1
+ 
+//-------------- MCMC parameters
+-I 1000 //Number of iterations
+-burn NA //Length of burn in
+-bs  11    NA 0 11 12 1 2 3 4 6 8 9 12 16 18 24 36 48 72  //Block size (ideally, should be a multiple of the #SNPs and close (#R)^0.5
+-thin 1 //Thinning rate on output values. Minimum value is 1. Only applicable if bs = 0
+-drop NA 20,20  // drop rate. For example -drop 20,100 implies drop any SNP if in the previous 20 iterations it was 
+              // never included in the model and start dropping SNPs after 100 iterations 
+
+//--------------  mixture distribution information
+-pi 0.94,0.049,0.01,0.001 0.55,0.40,0.049,0.001 //Proportion in each SNP effect distribution
+-alloc 0.0,0.0001,0.001,0.01 //Allocation of additive genetic variance
+-alpha 1,1,1,1 //Dirichlet alpha parameters
+
+
+//--------------  Optional extras
+-s NA  //Optional Seed value(s).
+-DAV 1 //if 1 then determine additive genetic variance
+-timing NA 2,5  ,10,20,25,50,100,125,250//comma separated sequence of integer values
+-force 0 //If 1, then for a multi-trait analysis all SNPs will be associated to all traits
+-show NA //Used to check and show the input parameters.
+-L  0 // if 1 redirect all screen output to a log file. Default is zero
