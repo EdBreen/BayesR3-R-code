@@ -1,3 +1,8 @@
+# directories to ignore
+
+keep/
+
+
 # History files
 .Rhistory
 .Rapp.history
