@@ -1,0 +1,60 @@
+QTL-MAS 2010, Poznan, Poland.
+This file contains information about simulated QTLs for common dataset
+on QTL-MAS workshop in Poznan, Poland.
+
+Chr = chromosom
+Bpair = chromosomal position in basepair
+Freq = frequency of allele 1
+Rep = 1 if QTL is represented (genotyped) in microarray
+QTL = qtl number as it appeared in QTL-MAS 2010 printed material
+QTLBT = 1 if QTL has pleiotropic effect (affect also binary trait) 
+      = 0 if QTL affects only quantitative trait
+Add = additive effect: half the difference between homozygote means, Add = [ M(11) - M(22) ] / 2
+
+Chr Bpair    Freq  Rep   QTL  QTLBT  Add    Information
+3   22415527 0.509 0     14   1      3.00   additive major controlled
+3   71610807 0.526 1     17   0      3.00   additive major controlled
+3   13511050 0.169 0     13   0     -1.98   additive random
+3   89958143 0.881 0     20   1      1.66   additive random
+4   15904305 0.466 0     23   1      0.96   additive random
+3   46501247 0.601 0     16   0     -0.73   additive random
+1   50389545 0.641 0      2   1     -1.56   additive random
+2   67248417 0.467 0      8   1     -1.32   additive random
+2   94680408 0.264 0     11   1      1.01   additive random
+4   41526832 0.602 0     27   1      0.93   additive random
+3   82333078 0.827 0     19   1     -0.95   additive random
+1   63386317 0.300 0      4   1     -1.68   additive random
+3   78153081 0.487 0     18   1     -0.76   additive random
+2   74900411 0.389 0     10   1      0.85   additive random
+4    6296223 0.240 0     22   1      1.25   additive random
+4   33939494 0.530 0     25   0     -0.31   additive random
+4   43949750 0.567 0     28   0     -0.22   additive random
+2   30511220 0.375 0      6   1      1.02   additive random
+2   95449160 0.268 0     12   1      1.69   additive random
+4   97651414 0.891 0     30   1      1.92   additive random
+2    2289495 0.844 0      5   1     -1.92   additive random
+3   29034182 0.227 0     15   1     -1.11   additive random
+1   58038782 0.665 0      3   1     -1.56   additive random
+4   66939973 0.554 0     29   1      0.75   additive random
+2   52441264 0.141 0      7   0      1.69   additive random
+4   26749857 0.372 0     24   0      0.56   additive random
+4   35354739 0.280 0     26   0      1.55   additive random
+3   97097998 0.566 1     21   1      0.65   additive random
+1    7536081 0.445 0      1   1      1.93   additive random
+2   73750269 0.656 1      9   1      0.25   additive random 
+1   49185089 0.538 1     31   0      NA     epist. pair 1  controlled
+1   50316379 0.557 1     32   0      NA     epist. pair 1  controlled
+2   32617381 0.496 1     33   0      NA     epist. pair 2  controlled
+2   33139075 0.506 1     34   0      NA     epist. pair 2  controlled
+2   51745206 0.546 1     35   0      NA     imprinted controlled
+2   78604040 0.538 1     36   0      NA     imprinted controlled
+2   86012861 0.557 1     37   0      NA     imprinted controlled
+
+Epistatic QTLs:
+Pair 1:   [ QTL31 - QTL32 ] Extra effect of each haplotype 1-1: +4.00 
+Pair 2:   [ QTL33 - QTL34 ] Extra effect of each haplotype 1-1: +4.00
+
+Imprinted QTLs:
+QTL35  Extra effect of paternal allele 1: +3.0
+QTL36  Extra effect of paternal allele 1: +3.0
+QTL37  Extra effect of paternal allele 1: +3.0
