@@ -1,3 +1,3 @@
 # BayesR3-R-code
 R code for BayesR3
-[Contribution guidelines for this project](docs/CONTRIBUTING.md)
+[BayeR3-R-code is a univariant version of bayesR3](docs/CONTRIBUTING.md)
