@@ -6,8 +6,12 @@ It represents simulated geneomic mouse data for public use:
 
 
 ## Pedigree [49.9 KB] 
-    The pedigree consists of 3226 individuals in 5 generations (F0-F4). There are 20 founders: 5 males and 15 females. A female mates once and gives birth to about 30 progeny. A pedigree file is in the form "ID MaleParent FemaleParent Sex". M=male, F=female, 0=missing parent.
-    Note, the pedigree file was corrected March 18, 2010. In the previous version of the file, two individuals (89 and 374) appeared with misspecified gender. Correct sex for the individual 89 is F (female) and correct sex for the individual 374 is M (male). We thank Javad Nadaf for finding the errors.
+    The pedigree consists of 3226 individuals in 5 generations (F0-F4). There are 20 founders: 5 males and 15 females. 
+    A female mates once and gives birth to about 30 progeny. A pedigree file is in the form "ID MaleParent FemaleParent Sex".
+    M=male, F=female, 0=missing parent.
+    Note, the pedigree file was corrected March 18, 2010. In the previous version of the file, two individuals (89 and 374)
+    appeared with misspecified gender. Correct sex for the individual 89 is F (female) and correct sex for the individual 
+    374 is M (male). We thank Javad Nadaf for finding the errors.
 ## Phenotypes [30.7 KB]
     Two traits are observed. Trait Q is a quantitative trait, whereas trait B is a binary trait. Young individuals (generation F4: individuals 2327 to 3226) have no phenotypic records.
 ##   Genome [164 KB]
