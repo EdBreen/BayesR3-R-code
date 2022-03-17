@@ -23,7 +23,8 @@
     First column is ID for an individual. Next columns contain alleles.
 
 ### Problems
-Geneticists may want to recover the genetic architecture of traits Q and B, and genetic links between the traits. Breeders may be interested in breeding value of each individual.
+Geneticists may want to recover the genetic architecture of traits Q and B, and genetic links between the traits. 
+Breeders may be interested in breeding value of each individual.
 
 True simulated breeding values, phased SNP data and QTL positions can be found in Download.
 If you have any questions concerning the dataset please contact: qtlmas@jay.up.poznan.pl 
