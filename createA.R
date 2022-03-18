@@ -1,11 +1,11 @@
 #------------------------------------------------------------------------------
-# Download as-is from :Additive Genetic Relationship Matrix (A matrix) in Animal Breeding
+# Downloaded as-is from :Additive Genetic Relationship Matrix (A matrix) in Animal Breeding
 # Austin Putz. See 
 # http://rstudio-pubs-static.s3.amazonaws.com/382572_35603135de154a79a72b9f04064be2f2.html
 #------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------#
-# Gota's createA function (slightly modified by myself)
+# Gota's createA function (slightly modified by Austin Putz)
 #------------------------------------------------------------------------------#
 
 # Given the pedigree, return additive relationship matrix 'A'.
