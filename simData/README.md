@@ -1,13 +1,14 @@
 # Simulated data set
 The data and information in this directory is from the [14th QTL-MAS](http://jay.up.poznan.pl/qtlmas2010/).
-    It represents simulated geneomic mouse data for public use and which has been edited and
-    formatted for bayesR3 usage:
+See also [https://bmcproc.biomedcentral.com/articles/10.1186/1753-6561-5-S3-S3] (https://bmcproc.biomedcentral.com/articles/10.1186/1753-6561-5-S3-S3) 
+It represents simulated geneomic mouse data for public use and which has been edited and
+formatted for bayesR3 usage:
 
 
 ## Pedigree [49.9 KB] (pedigree.txt)
-    The pedigree consists of 3226 individuals in 5 generations (F0-F4). There are 20 founders: 5 males and 15 females. 
-    A female mates once and gives birth to about 30 progeny. A pedigree file is in the form "ID MaleParent FemaleParent Sex".
-    M=male, F=female, 0=missing parent.
+The pedigree consists of 3226 individuals in 5 generations (F0-F4). There are 20 founders: 5 males and 15 females. 
+A female mates once and gives birth to about 30 progeny. A pedigree file is in the form "ID MaleParent FemaleParent Sex".
+M=male, F=female, 0=missing parent.
     Note, the pedigree file was corrected March 18, 2010. In the previous version of the file, two individuals (89 and 374)
     appeared with misspecified gender. Correct sex for the individual 89 is F (female) and correct sex for the individual 
     374 is M (male). We thank Javad Nadaf for finding the errors.
