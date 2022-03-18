@@ -1,3 +1,7 @@
+# This code was written by EdBreen
+# Department of Jobs Precincts and Regions Victoria
+# Agriculture Victoria
+# This code is under development 
 
 if(!require(DirichletReg))
     install.packages("DirichletReg")
