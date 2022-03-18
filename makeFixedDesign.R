@@ -4,7 +4,7 @@ makeFixedDesign = function(fixedEffects, toFile=NULL)
     # this function assumes that 'fixedEffects' is a data frame containing 
     # 1 or more factor columns of fixed effects. 
     # Each factor column should contain 2 or more levels.
-    # It is also assumed that column 1 of 'pheno' contains the record IDs.
+    # It is also assumed that column 1 of 'fixedEffects' contains the record IDs.
     # The first column of the design matrix is for the mean
     # Returns a data frame containing the design matrix
     
