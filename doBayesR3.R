@@ -8,20 +8,8 @@ if(!require(DirichletReg))
 
 
 
-
-genofile =  "./Model/Model2Geno.txt"
-phenofile = "./Model/Model2Pheno.txt"
-fixedfile = "./Model/Model2FixEffects.txt" # = NULL
-grmfile = "./Model/Model2GRM.txt"
-reffile = "./Model/Model2Ref.txt"
-
-
-
-tc = 3           # trait column in phenotype file. Column 1 is ID column
-wtc = NULL       # optional weight column in phenotype file
-
 minFreq = 0.002
-h2 = 0.9  # heritability
+h2 = 0.5  # heritability
 DAV = T 
 
 # mixture model
