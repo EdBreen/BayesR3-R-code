@@ -73,7 +73,7 @@ createA <- function(ped) {
     cat("\t",
         sprintf(
             "%-30s:%f",
-            "Time it took (sec)",
+            "createA: Time it took (sec)",
             as.numeric(Sys.time() - start_time)
         ),
         "\n")

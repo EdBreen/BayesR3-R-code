@@ -5,22 +5,11 @@
 
 if(!require(DirichletReg))
     install.packages("DirichletReg")
-
-
-
-minFreq = 0.002
-h2 = 0.5  # heritability
-DAV = T 
+if(!exists("createA"))
+  source(file = "./createA.R")
 
 # mixture model
-mix.pi = c(0.94,0.049,0.01,0.001)     # Proportion in each SNP effect distribution
-mix.alloc = c(0.0,0.0001,0.001,0.01)  # Allocation of additive genetic variance
-mix.alpha = c(1,1,1,1)                # Dirichlet prior
-mix.nd = length(mix.pi)
-
-
 #results
-
 #a = 0      # vector of SNP effects
 #fx =0      # vector of fixed effects
 #vara =0    # accumulative SNP effects variances
@@ -28,13 +17,48 @@ mix.nd = length(mix.pi)
 #mix.vk  =0 # distribution variances
 #mono = 0   # vector of monomorphic SNPs mono[x] == T if monomorphic
 #bs = 0     # block size
-
-
 # sequence order for functions calls
 # getData(); imputeGT(); centreScale() ;makeBlocks(); bayesR3()
 
+
 exit <- function(msg) { print(msg); invokeRestart("abort") } 
 
+
+exampleDriver = function(it = 500)
+{
+  
+  rm(list=ls())
+  
+  print("Getting Data")
+  getData(genofile = "./simData/simGen.txt.gz", 
+          phenofile = './simData/simPhen.txt', 
+          tc = 2,
+          pedfile = NULL) #"./simData/pedigree.txt")
+  
+  
+  print("Doing  imputeGT")
+  imputeGT(); # impute any missing genotypes
+  print("Doing centreScale")
+  centreScale(); # centre and Scale genotypes
+  
+  print(paste("Number of monomorphics:", length(which(mono))))
+  
+  print("Making blocks")
+  
+  makeBlocks()
+  
+  print(paste("Running BayesR3 using", it , "iterations"))
+  bayesR3(it=it)  #returns an invisible list
+}
+
+
+createMap = function()
+{
+  map = read.table("./simData/marker-info.txt", header=F, sep=' ')
+  map$label = paste(map$V3, map$V4, sep=':')
+  colnames(map)[c(3,4)] = c("chr", "pos")
+  map[,c(5,3,4)]
+}
 
 crtGRM = function(genofile)
 {
@@ -58,6 +82,12 @@ crtGRM = function(genofile)
     df
 }
 
+
+# minFreq = 0.002
+# h2 = 0.5  # heritability
+# DAV = T 
+
+
 getData = function(genofile ,
                    phenofile ,
                    tc,
@@ -65,7 +95,8 @@ getData = function(genofile ,
                    reffile = NULL,
                    fixedfile = NULL,
                    pedfile = NULL,
-                   grmfile = NULL)
+                   grmfile = NULL,
+                   bs = NULL)
 {
     # This function reads both file.txt.gz and normal file.txt files
   
@@ -74,6 +105,8 @@ getData = function(genofile ,
     # Missing genotypes are imputed using average SNP genotype
     # Missing phenotypes are used by setting their weight to 0
     # Missing values are one of: c(".", "*", "NA")
+  
+    
   
     doRef = !is.null(reffile)
     
@@ -123,7 +156,8 @@ getData = function(genofile ,
     geno <<- data.matrix(m[,-1]) * 1.0 # convert to float point
     rm(m)
    
-    bs <<- as.integer(min(sqrt(length(pheno)), sqrt(ncol(geno))))
+    if(is.null(bs))
+      bs <<- as.integer(min(sqrt(length(pheno)), sqrt(ncol(geno))))
     
     
     if (!(is.null(fixedfile))) {
@@ -175,7 +209,7 @@ imputeGT = function()
         }
     }   
 }
-centreScale = function()
+centreScale = function(minFreq=0.002)
 {
     nc = ncol(geno)
     nr = nrow(geno)
@@ -194,6 +228,8 @@ centreScale = function()
     
     geno[, !mono] <<-  mapply('-', data.frame(geno[,!mono]), p2[!mono])
     geno[, !mono] <<-  mapply('/', data.frame(geno[,!mono]), psqrt[!mono])
+    
+   
 
 }
 makeBlocks=function()
@@ -216,7 +252,13 @@ makeBlocks=function()
     }
 }
 
-bayesR3 = function(it=100, burnIn = 0.5 * it)
+bayesR3 = function(it=100, burnIn = 0.5 * it,
+                   h2 = 0.5,
+                   DAV = T,
+                   mix.pi = c(0.94,0.049,0.01,0.001),     # Proportion in each SNP effect distribution
+                   mix.alloc = c(0.0,0.0001,0.001,0.01),  # Allocation of additive genetic variance
+                   mix.alpha = c(1,1,1,1),                # Dirichlet prior
+                   mix.nd = length(mix.pi))
 {
     pheno = as.vector(pheno)
     snpDist = matrix(0, ncol=mix.nd, nrow=nrow(geno))
@@ -464,15 +506,17 @@ bayesR3 = function(it=100, burnIn = 0.5 * it)
     
     mix.distFreq = round(colSums(snpDist)/(inner *cnt),2)
     snpDist = snpDist / rowSums(snpDist)
+    snpDist[is.nan(snpDist[,1]),] = 0
     
-    a <<-  acollect/(inner * cnt);
-    varDist <<- varDistStoreAcc/cnt
-    vare <<- veAcc/cnt
-    vara <<- vaAcc/cnt
-    mu <<- muAcc/cnt
-    
+    # varDist <<- varDistStoreAcc/cnt
+    # vare <<- veAcc/cnt
+    # vara <<- vaAcc/cnt
+    # mu <<- muAcc/cnt
+    # 
     
     u = ucollect/cnt
+    
+    a = acollect/(inner * cnt)
     
     yhat = (geno %*% a)[,1]
     
@@ -486,11 +530,11 @@ bayesR3 = function(it=100, burnIn = 0.5 * it)
     lst = list(s = c(r2 = r2, mu = muAcc/cnt, Vp = phenoVar, Va = vaAcc/cnt, Ve = veAcc/cnt, Vg=vgAcc/cnt),
                nMono = length(which(mono)),
         Nk = mix.distFreq, 
-        Vk = varDist,
+        Vk = varDistStoreAcc/cnt,
          
         yhat = yhat,
         PiP = snpDist,
-        effects =  a)
+        effects = a)
     
     if(doFixed)
       lst = append(lst, list(fixed = fxAcc, Vf))
