@@ -1,11 +1,11 @@
 //--------- INPUT FILE information
--genf   /home/ec2-user/simData/simSplit simGen.txt.gz  //Name of genotype file (can be a '.gz' file)
+-genf   ./simGen.txt.gz  //Name of genotype file (can be a '.gz' file)
 -parts 1
--phef  /home/ec2-user/simData/simPhen.txt //Name of phenotypefile (can be a '.gz' file)
--ped   /home/ec2-user/simData/pedigree.txt NA //Optional name of pedigree file if available (can be a '.gz' file)
+-phef  ./simPhen.txt //Name of phenotypefile (can be a '.gz' file)
+-ped    NA ./pedigree.txt NA //Optional name of pedigree file if available (can be a '.gz' file)
 -grm    NA  //Optional GRM relationship matrix alternative to pedigree
 -fixf   NA  //Optional name for a fixedeffects design file (can be a '.gz' file)
--ref    /home/ec2-user/simData/simRefSet.txt  //Optional file name giving a set of reference IDs (can be a '.gz' file
+-ref    NA ./simRefSet.txt  //Optional file name giving a set of reference IDs (can be a '.gz' file
 -valid   NA // Optional validation file
 -classf  NA //Optional file name containing a classification for each SNP, to run a BayesRC analysis
 -sc   1 //Scale and centre genotypes
@@ -15,7 +15,7 @@
 -maf 0.01 //Minimum allele frequency
  
 //-------------- OUTPUT FILE information
--path  /home/ec2-user/simData/keep  //Path directory to store output files. Will be created if needed
+-path  ./keep  //Path directory to store output files. Will be created if needed
 -pre   simData  //Output file prefix
 -d  1   //Output detail; 1 = means only, 2 = full output
 -fext csv //Output file extension type, one of {csv, txt, tab}
@@ -24,7 +24,7 @@
 //-------------- MCMC parameters
 -I 1000 //Number of iterations
 -burn NA //Length of burn in
--bs  11    NA 0 11 12 1 2 3 4 6 8 9 12 16 18 24 36 48 72  //Block size (ideally, should be a multiple of the #SNPs and close (#R)^0.5
+-bs  NA NA 0 11 12 1 2 3 4 6 8 9 12 16 18 24 36 48 72  //Block size (ideally, should be a multiple of the #SNPs and close (#R)^0.5
 -thin 1 //Thinning rate on output values. Minimum value is 1. Only applicable if bs = 0
 -drop NA 20,20  // drop rate. For example -drop 20,100 implies drop any SNP if in the previous 20 iterations it was 
               // never included in the model and start dropping SNPs after 100 iterations 
